@@ -166,7 +166,7 @@ def main():
                     sorted_ylabels = [item[2] for item in sorted_lists]
                     
                     st.write('SHAP plot')
-                    figure = shap.plots.waterfall(explanation, max_display=X_test.shape[0], show = False)
+                    figure = shap.plots.waterfall(explanation, show = False)
                     # ax_ = figure.get_axes()[0]
                     
                     # tick_labels = ax_.yaxis.get_majorticklabels()
