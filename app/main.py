@@ -140,7 +140,7 @@ def main():
                 Location_m =  'Yes' if Location == 'Middle' else 'No'
                 Location_u =  'Yes' if Location == 'Upper' else 'No'
                 
-                T_category_broad = X_test['T category, broad']
+                T_category_broad = {'T1a': 'T1', 'T1b': 'T1', 'T2': 'T2', 'T3': 'T3', 'T4a': 'T4', 'T4b': 'T4'}[T_category]
                 
                 ylabels = [
                     str(Tumor_size) + ' mm' + ' = ' + 'Tumor size',
