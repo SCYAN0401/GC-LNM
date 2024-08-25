@@ -178,7 +178,7 @@ def main():
                 ax_.set_yticklabels(sorted_ylabels)
                 figure = ax_.get_figure()
                 
-                st_shap(figure, width=750, height=500)
+                st_shap(figure, width=1500, height=1000)
 
 if __name__=='__main__':
     main()
