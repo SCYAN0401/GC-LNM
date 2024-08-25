@@ -135,9 +135,9 @@ def main():
 ####            
                 Histology_it = 'Yes' if Histology == 'Intestinal type' else 'No'
                 Histology_dt = 'Yes' if Histology == 'Diffuse type' else 'No'
-                Location_l =  'Yes' if Location == 'Lower' else 'No'
-                Location_m =  'Yes' if Location == 'Middle' else 'No'
-                Location_u =  'Yes' if Location == 'Upper' else 'No'
+                Location_l = 'Yes' if Location == 'Lower' else 'No'
+                Location_m = 'Yes' if Location == 'Middle' else 'No'
+                Location_u = 'Yes' if Location == 'Upper' else 'No'
                 
                 T_category_broad = {'T1a': 'T1', 'T1b': 'T1', 'T2': 'T2', 'T3': 'T3', 'T4a': 'T4', 'T4b': 'T4'}[T_category]
                 
@@ -158,15 +158,15 @@ def main():
                     explanation = explainer(X_test_final)
     
                     combine_list = list(zip(
-                        np.abs(explanation[0].values),
-                        explanation[0].feature_names,
+                        np.abs(explanation.values),
+                        explanation.feature_names,
                         ylabels))
                     
                     sorted_lists = sorted(combine_list, key = lambda x: x[0], reverse = False)
                     sorted_ylabels = [item[2] for item in sorted_lists]
                     
                     st.write('SHAP plot')
-                    figure = shap.plots.waterfall(explanation[0], max_display=X_test.shape[0], show = False)
+                    figure = shap.plots.waterfall(explanation, max_display=X_test.shape[0], show = False)
                     ax_ = figure.get_axes()[0]
                     
                     tick_labels = ax_.yaxis.get_majorticklabels()
