@@ -133,7 +133,6 @@ def main():
                 output = predict(X_test_final)
                 st.success('Prediceted LNM is  {}'.format(output))
 ####            
-    with col2:
                 Histology_it = 'Yes' if Histology == 'Intestinal type' else 'No'
                 Histology_dt = 'Yes' if Histology == 'Diffuse type' else 'No'
                 Location_l =  'Yes' if Location == 'Lower' else 'No'
@@ -155,30 +154,30 @@ def main():
                     str(Histology_it) + ' = ' + 'Histology - Intestinal type',     
                 ]
 
-        
-                explanation = explainer(X_test_final)
-
-                combine_list = list(zip(
-                    np.abs(explanation[0].values),
-                    explanation[0].feature_names,
-                    ylabels))
-                
-                sorted_lists = sorted(combine_list, key = lambda x: x[0], reverse = False)
-                sorted_ylabels = [item[2] for item in sorted_lists]
-                
-                st.write('SHAP plot')
-                figure = shap.plots.waterfall(explanation[0], max_display=X_test.shape[0], show = False)
-                ax_ = figure.get_axes()[0]
-                
-                tick_labels = ax_.yaxis.get_majorticklabels()
-                # for i in range(len(sorted_ylabels)):
-                #     tick_labels[i].set_color("black")
+                with col2:
+                    explanation = explainer(X_test_final)
+    
+                    combine_list = list(zip(
+                        np.abs(explanation[0].values),
+                        explanation[0].feature_names,
+                        ylabels))
                     
-                ax_.set_yticks(np.arange(len(sorted_ylabels)))
-                ax_.set_yticklabels(sorted_ylabels)
-                figure = ax_.get_figure()
-                
-                st_shap(figure, width=900, height=600)
+                    sorted_lists = sorted(combine_list, key = lambda x: x[0], reverse = False)
+                    sorted_ylabels = [item[2] for item in sorted_lists]
+                    
+                    st.write('SHAP plot')
+                    figure = shap.plots.waterfall(explanation[0], max_display=X_test.shape[0], show = False)
+                    ax_ = figure.get_axes()[0]
+                    
+                    tick_labels = ax_.yaxis.get_majorticklabels()
+                    for i in range(len(sorted_ylabels)):
+                        tick_labels[i].set_color("black")
+                        
+                    ax_.set_yticks(np.arange(len(sorted_ylabels)))
+                    ax_.set_yticklabels(sorted_ylabels)
+                    figure = ax_.get_figure()
+                    
+                    st_shap(figure, width=900, height=600)
 
 if __name__=='__main__':
     main()
