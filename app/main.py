@@ -129,32 +129,34 @@ def main():
                     'Location_Lower', 'Location_Middle', 'Location_Upper',
                     'Histology_Diffuse type', 'Histology_Intestinal type']
                 ]
-             
-                output = predict(X_test_final)
-                st.success('Prediceted LNM is  {}'.format(output))
-####            
-                Histology_it = 'Yes' if Histology == 'Intestinal type' else 'No'
-                Histology_dt = 'Yes' if Histology == 'Diffuse type' else 'No'
-                Location_l = 'Yes' if Location == 'Lower' else 'No'
-                Location_m = 'Yes' if Location == 'Middle' else 'No'
-                Location_u = 'Yes' if Location == 'Upper' else 'No'
-                
-                T_category_broad = {'T1a': 'T1', 'T1b': 'T1', 'T2': 'T2', 'T3': 'T3', 'T4a': 'T4', 'T4b': 'T4'}[T_category]
-                
-                ylabels = [
-                    str(Tumor_size) + ' mm' + ' = ' + 'Tumor size',
-                    str(T_category_broad) + ' = ' + 'T category, broad',
-                    str(T_category) + ' = ' + 'T category',
-                    str(SRCC) + ' = ' + 'SRCC', 
-                    str(Grade) + ' = ' + 'Grade',
-                    str(Location_l) + ' = ' + 'Location - Lower', 
-                    str(Location_m) + ' = ' + 'Location - Middle', 
-                    str(Location_u) + ' = ' + 'Location - Upper', 
-                    str(Histology_dt) + ' = ' + 'Histology - Diffuse type', 
-                    str(Histology_it) + ' = ' + 'Histology - Intestinal type',     
-                ]
 
+####
                 with col2:
+                    output = predict(X_test_final)
+                    st.success('Prediceted LNM is  {}'.format(output))
+
+                    Histology_it = 'Yes' if Histology == 'Intestinal type' else 'No'
+                    Histology_dt = 'Yes' if Histology == 'Diffuse type' else 'No'
+                    Location_l = 'Yes' if Location == 'Lower' else 'No'
+                    Location_m = 'Yes' if Location == 'Middle' else 'No'
+                    Location_u = 'Yes' if Location == 'Upper' else 'No'
+                    
+                    T_category_broad = {'T1a': 'T1', 'T1b': 'T1', 'T2': 'T2', 'T3': 'T3', 'T4a': 'T4', 'T4b': 'T4'}[T_category]
+                    
+                    ylabels = [
+                        str(Tumor_size) + ' mm' + ' = ' + 'Tumor size',
+                        str(T_category_broad) + ' = ' + 'T category, broad',
+                        str(T_category) + ' = ' + 'T category',
+                        str(SRCC) + ' = ' + 'SRCC', 
+                        str(Grade) + ' = ' + 'Grade',
+                        str(Location_l) + ' = ' + 'Location - Lower', 
+                        str(Location_m) + ' = ' + 'Location - Middle', 
+                        str(Location_u) + ' = ' + 'Location - Upper', 
+                        str(Histology_dt) + ' = ' + 'Histology - Diffuse type', 
+                        str(Histology_it) + ' = ' + 'Histology - Intestinal type',     
+                    ]
+
+                
                     explanation = explainer(X_test_final)[0]
     
                     combine_list = list(zip(
