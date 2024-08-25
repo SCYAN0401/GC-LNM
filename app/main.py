@@ -66,11 +66,10 @@ def predict(X_test):
     
     Probability = ANN.predict_proba(X_test_final)[0][1]
     Predicted = ANN.predict(X_test_final)
-    st.write('Predicted LNM: :red[**Positive**];', f'Probability of LNM: {Probability*100:.1f}%.')
-    st.write('Predicted LNM: :blue[**Negative**];', f'Probability of LNM: {Probability*100:.1f}%.')
+    st.write(f'Probability of LNM: {Probability*100:.1f}%.')
   
     output = ':red[**Positive**]' if Predicted == True else ':blue[**Negative**]'
-    return output
+    return X_test_final, output
 
 ####
 def main():
@@ -131,8 +130,8 @@ def main():
                          disabled=operator.not_(st.session_state.disabled)):
                 
                 X_test = recode(Age, Sex, Tumor_size, T_category, SRCC, Grade, Location, Histology)
-                output = predict(X_test)
-                st.success('Prediceted LNM: {}'.format(output))
+                X_test_final, output = predict(X_test)
+                st.success('Prediceted LNM:  {}'.format(output))
 ####
                 Histology_it = 'Yes' if Histology == 'Intestinal type' else 'No'
                 Histology_dt = 'Yes' if Histology == 'Diffuse type' else 'No'
