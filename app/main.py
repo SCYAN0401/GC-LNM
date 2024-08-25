@@ -155,7 +155,7 @@ def main():
                 ]
 
                 with col2:
-                    explanation = explainer(X_test_final)
+                    explanation = explainer(X_test_final)[0]
     
                     combine_list = list(zip(
                         np.abs(explanation.values),
