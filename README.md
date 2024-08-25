@@ -1,2 +1,2 @@
 # GC-LNM
-Prediction model for lymph node metastasis in patients with gastric cancer
+An ANN-based prediction model to predict and estimate the probability of lymph node metastasis in patients with gastric cancer. GC-LNM was trained on 500 patients from a Chinese tertiary medical center and validated externally using 824 Asian American patients from Surveillance, Epidemiology, and End Results (SEER) database. This prediction model has been developed and validated solely for scientific research purposes and has not been evaluated prospectively or approved for clinical use.
