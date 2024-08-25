@@ -142,16 +142,16 @@ def main():
                 T_category_broad = {'T1a': 'T1', 'T1b': 'T1', 'T2': 'T2', 'T3': 'T3', 'T4a': 'T4', 'T4b': 'T4'}[T_category]
                 
                 ylabels = [
-                    Tumor_size + ' mm' + ' = ' + 'Tumor size',
-                    T_category_broad + ' = ' + 'T category, broad',
-                    T_category + ' = ' + 'T category',
-                    SRCC + ' = ' + 'SRCC', 
-                    Grade + ' = ' + 'Grade',
-                    Location_l + ' = ' + 'Location - Lower', 
-                    Location_m + ' = ' + 'Location - Middle', 
-                    Location_u + ' = ' + 'Location - Upper', 
-                    Histology_dt + ' = ' + 'Histology - Diffuse type', 
-                    Histology_it + ' = ' + 'Histology - Intestinal type',     
+                    str(Tumor_size) + ' mm' + ' = ' + 'Tumor size',
+                    str(T_category_broad) + ' = ' + 'T category, broad',
+                    str(T_category) + ' = ' + 'T category',
+                    str(SRCC) + ' = ' + 'SRCC', 
+                    str(Grade) + ' = ' + 'Grade',
+                    str(Location_l) + ' = ' + 'Location - Lower', 
+                    str(Location_m) + ' = ' + 'Location - Middle', 
+                    str(Location_u) + ' = ' + 'Location - Upper', 
+                    str(Histology_dt) + ' = ' + 'Histology - Diffuse type', 
+                    str(Histology_it) + ' = ' + 'Histology - Intestinal type',     
                 ]
 
                 with col2:
@@ -175,9 +175,9 @@ def main():
                         
                     ax_.set_yticks(np.arange(len(sorted_ylabels)))
                     ax_.set_yticklabels(sorted_ylabels)
-                    figure = ax_.get_figure()
+                    plot = ax_.get_figure()
                     
-                    st_shap(figure, width=900, height=600)
+                    st_shap(plot, width=900, height=600)
 
 if __name__=='__main__':
     main()
