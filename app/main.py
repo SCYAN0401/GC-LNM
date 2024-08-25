@@ -53,23 +53,13 @@ def recode(Age, Sex, Tumor_size, T_category, SRCC, Grade, Location, Histology):
     ]
     return X_test
 
-def predict(X_test):
-    X_test_scale = scaler.transform(X_test)
-    X_test_scale = pd.DataFrame(X_test_scale, columns = X_test.columns)             
-    
-    X_test_final = X_test_scale[
-        ['Tumor size', 'T category, broad', 'T category', 
-        'SRCC', 'Grade', 
-        'Location_Lower', 'Location_Middle', 'Location_Upper',
-        'Histology_Diffuse type', 'Histology_Intestinal type']
-    ]
-    
+def predict(X_test_final):    
     Probability = ANN.predict_proba(X_test_final)[0][1]
     Predicted = ANN.predict(X_test_final)
-    st.write(f'Probability of LNM: {Probability*100:.1f}%.')
+    st.write(f'Probability of LNM is {Probability*100:.1f}%.')
   
     output = ':red[**Positive**]' if Predicted == True else ':blue[**Negative**]'
-    return X_test_final, output
+    return output
 
 ####
 def main():
@@ -130,8 +120,18 @@ def main():
                          disabled=operator.not_(st.session_state.disabled)):
                 
                 X_test = recode(Age, Sex, Tumor_size, T_category, SRCC, Grade, Location, Histology)
-                X_test_final, output = predict(X_test)
-                st.success('Prediceted LNM:  {}'.format(output))
+                X_test_scale = scaler.transform(X_test)
+                X_test_scale = pd.DataFrame(X_test_scale, columns = X_test.columns)             
+                
+                X_test_final = X_test_scale[
+                    ['Tumor size', 'T category, broad', 'T category', 
+                    'SRCC', 'Grade', 
+                    'Location_Lower', 'Location_Middle', 'Location_Upper',
+                    'Histology_Diffuse type', 'Histology_Intestinal type']
+                ]
+             
+                output = predict(X_test_final)
+                st.success('Prediceted LNM is  {}'.format(output))
 ####            
     with col2:
                 Histology_it = 'Yes' if Histology == 'Intestinal type' else 'No'
@@ -178,7 +178,7 @@ def main():
                 ax_.set_yticklabels(sorted_ylabels)
                 figure = ax_.get_figure()
                 
-                st_shap(figure, width=1500, height=1000)
+                st_shap(figure, width=900, height=600)
 
 if __name__=='__main__':
     main()
