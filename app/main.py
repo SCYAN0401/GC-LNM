@@ -167,15 +167,15 @@ def main():
                     
                     st.write('SHAP plot')
                     figure = shap.plots.waterfall(explanation, max_display=X_test.shape[0], show = False)
-                    ax_ = figure.get_axes()[0]
+                    # ax_ = figure.get_axes()[0]
                     
-                    tick_labels = ax_.yaxis.get_majorticklabels()
+                    # tick_labels = ax_.yaxis.get_majorticklabels()
                     # for i in range(len(sorted_ylabels)):
                     #     tick_labels[i].set_color("black")
                         
-                    ax_.set_yticks(np.arange(len(sorted_ylabels)))
-                    ax_.set_yticklabels(sorted_ylabels)
-                    figure = ax_.get_figure()
+                    # ax_.set_yticks(np.arange(len(sorted_ylabels)))
+                    # ax_.set_yticklabels(sorted_ylabels)
+                    # figure = ax_.get_figure()
                     
                     st_shap(figure, width=900, height=600)
 
