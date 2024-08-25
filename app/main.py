@@ -56,7 +56,7 @@ def recode(Age, Sex, Tumor_size, T_category, SRCC, Grade, Location, Histology):
 def predict(X_test_final):    
     Probability = ANN.predict_proba(X_test_final)[0][1]
     Predicted = ANN.predict(X_test_final)
-    st.write(f'Probability of LNM is {Probability*100:.1f}%.')
+    st.write(f'Probability of LNM is {Probability*100:.1f}%')
   
     output = ':red[**Positive**]' if Predicted == True else ':blue[**Negative**]'
     return output
